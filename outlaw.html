@@ -7,11 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-/* VOICE: night-time RP server poster, confident and playful
-   IDEA: a squad roster board pinned in a dark briefing room
-   PICTURE: the tier board itself, framed by the server logo glow
-   COLOUR/TYPE: deep navy from the logo, teal accent, vivid tier colours; Lalezar for headings, Tajawal body
-   LAYOUT: logo + title centred, board, roster pool, actions */
 :root{--cols:7;--bg:#09131c;--panel:#101f2b;--cell:#0c1822;--line:rgba(120,200,215,.12);--teal:#4fb8c4;--ink:#eef4f6;--muted:#86a3b1}
 *{box-sizing:border-box;min-width:0}
 body{margin:0;color:var(--ink);font:16px/1.5 Tajawal,Tahoma,sans-serif;overflow-x:clip;min-height:100vh;
@@ -224,17 +219,12 @@ document.getElementById('save').onclick=async()=>{
   });
   ctx.restore();
   ctx.strokeStyle='rgba(79,184,196,.45)';ctx.lineWidth=2;rr(ctx,bx,by,bw,boardH,26);ctx.stroke();
-  cv.toBlob(async b=>{
-    let ok=false;
-    try{const dl=window.claude&&await Promise.race([claude.use('downloads'),new Promise(r=>setTimeout(()=>r(null),3000))]);
-      if(dl){await dl.save({filename:'outlaw-tier-list.png',data:b});ok=true;}}catch(e){}
-    if(!ok&&!window.claude){try{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='outlaw-tier-list.png';document.body.appendChild(a);a.click();a.remove();ok=true;}catch(e){}}
-    if(!ok){document.getElementById('shot').src=cv.toDataURL('image/png');document.getElementById('ov').hidden=false;}
+  cv.toBlob(b=>{
+    try{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='outlaw-tier-list.png';document.body.appendChild(a);a.click();a.remove();}
+    catch(e){document.getElementById('shot').src=cv.toDataURL('image/png');document.getElementById('ov').hidden=false;}
   },'image/png');
 };
 // test hook
-window.__prank=()=>{const c=[...pool.querySelectorAll('.card-i')].find(x=>PRANK.has(+x.dataset.id));place(c,zones()[3],null);};
-window.__fill=()=>{const z=[...board.querySelectorAll('.zone')];[...pool.querySelectorAll('.card-i')].slice(0,20).forEach((c,i)=>z[i%6].appendChild(c));upd();};
 }
 </script>
 </body>
