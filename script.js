@@ -2,7 +2,7 @@
 //  تقييم كركترات اوتلاو
 // =============================
 
-const TOTAL_CHARS = 46; // عدد الصور في مجلد characters
+const TOTAL_CHARS = 43; // عدد الصور في مجلد characters
 
 // المستويات (من فوق لتحت)
 const tiers = [
@@ -22,7 +22,7 @@ const legendaryOnly = [5, 12, 13, 15, 20, 30, 32];
 const executeOnly = [10, 35, 37];
 
 // مقلب 3: هذا مكانه أسطوري ١٧ مره وبس
-const legend17Only = [46];
+const legend17Only = [43];
 
 const MSG_LEGEND = "اختار اللي انت عايزو ياحبيبي";
 const MSG_LEGEND17 = "هذا مكانه أسطوري ١٧ مره وبس";
